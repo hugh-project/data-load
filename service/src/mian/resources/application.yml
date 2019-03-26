@@ -1,0 +1,49 @@
+
+server:
+  port: 8080
+  tomcat:
+      max-threads: 1000
+      max-connections: 1000
+
+dataloader:
+  datasource:
+    url: 192.168.1.34
+    username: root
+    password: qwer223
+    databaseName: argo-core-master
+    urlname: jdbc:mysql://192.168.1.34:3306/argo-core-master?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&&useSSL=false&&allowMultiQueries=true
+    driver-class-name: com.mysql.jdbc.Driver
+    initialSize: 20
+    minIdle: 20
+    maxActive: 300
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 1200
+    filters: stat,wall
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  mq:
+    maxThreads: 200
+    maxCount: 10
+
+spring:
+  rabbitmq:
+    host: 192.168.1.34
+    port: 5672
+    username: ARGO
+    password: xq3askJWmegaewdkf;la3qdawef
+
+logging:
+  slf4j:
+    enabled: true
+  rabbitmq:
+    enabled: true
+    exchangeName: log
+    declareExchange: true
+  project:
+    application: dataLoader
