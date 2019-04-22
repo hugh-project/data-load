@@ -7,11 +7,11 @@ server:
 
 dataloader:
   datasource:
-    url: 192.168.1.34
+    url: 192.168.1.12
     username: root
     password: qwer223
     databaseName: argo-core-master
-    urlname: jdbc:mysql://192.168.1.34:3306/argo-core-master?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&&useSSL=false&&allowMultiQueries=true
+    urlname: jdbc:mysql://192.168.1.12:3306/argo-core-master?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&&useSSL=false&&allowMultiQueries=true
     driver-class-name: com.mysql.jdbc.Driver
     initialSize: 20
     minIdle: 20
@@ -27,13 +27,17 @@ dataloader:
     maxPoolPreparedStatementPerConnectionSize: 1200
     filters: stat,wall
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-  mq:
-    maxThreads: 200
-    maxCount: 10
+  message:
+    max : 100
+  threadPool:
+    corePoolSize: 50
+    maxPoolSize: 300
+    queueCapacity: 1000
+    keepAliveSeconds: 30
 
 spring:
   rabbitmq:
-    host: 192.168.1.34
+    host: 192.168.1.12
     port: 5672
     username: ARGO
     password: xq3askJWmegaewdkf;la3qdawef
